@@ -1,84 +1,227 @@
+/* ================= RESET ================= */
+
+* {
+  box-sizing: border-box;
+}
+
 body {
-  background-image: url('golfistas.png');
+  margin: 0;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  background-image: url("golfistas.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  font-family: 'Segoe UI', Arial, sans-serif;
   min-height: 100vh;
-  margin: 0;
+  color: #1e1e1e;
 }
 
-#setup, #juego, #resumen9, #resumen {
-  background: rgba(255,255,255,0.95);
-  padding: 20px;
-  border-radius: 16px;
-  max-width: 360px;
-  margin: 20px auto;
-  box-shadow: 0 8px 24px rgba(0,0,0,.3);
+/* Oscurecer fondo para lectura */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: -1;
 }
+
+/* ================= CONTENEDORES ================= */
+
+#setup,
+#juego,
+#resumen9,
+#resumen {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.96),
+    rgba(245, 247, 250, 0.95)
+  );
+  margin: 20px auto;
+  padding: 22px;
+  max-width: 380px;
+  border-radius: 18px;
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(6px);
+}
+
+/* ================= TÍTULOS ================= */
 
 h1 {
   text-align: center;
-  color: #1607bc;
+  margin: 20px 0 10px;
   font-size: 34px;
+  font-weight: 800;
+  color: #ff9800;
+  letter-spacing: 1px;
+  text-shadow: 0 3px 8px rgba(0, 0, 0, 0.45);
 }
 
 h3 {
   text-align: center;
-  background: #e3f2fd;
+  margin: 0 0 16px;
+  font-size: 20px;
+  color: #0d47a1;
   padding: 10px;
-  border-radius: 10px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+  box-shadow: inset 0 0 0 1px rgba(13, 71, 161, 0.15);
 }
 
-small {
+/* ================= FORMULARIOS ================= */
+
+label {
+  font-weight: 600;
   font-size: 14px;
-  color: #555;
+  color: #333;
 }
 
-input, select {
+input,
+select {
   width: 100%;
-  padding: 10px;
-  font-size: 18px;
-  border-radius: 8px;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 10px;
+  border: 1px solid #cfd8dc;
+  background: #ffffff;
   margin: 8px 0;
+  outline: none;
+  transition: border 0.15s, box-shadow 0.15s;
 }
+
+input:focus,
+select:focus {
+  border-color: #1976d2;
+  box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.15);
+}
+
+/* ================= BOTONES PRINCIPALES ================= */
 
 button {
   width: 100%;
-  padding: 12px;
+  padding: 14px;
   margin: 8px 0;
-  border-radius: 10px;
+  border-radius: 12px;
   border: none;
-  background: linear-gradient(135deg,#2e7d32,#1b5e20);
-  color: white;
-  font-size: 18px;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  color: #ffffff;
+  background: linear-gradient(135deg, #2e7d32, #1b5e20);
+  box-shadow:
+    0 6px 14px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
 }
+
+button:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 10px 20px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+/* ================= TABLAS ================= */
 
 table {
   width: 100%;
-  margin-top: 10px;
   border-collapse: collapse;
+  margin-top: 14px;
+  background: #ffffff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-td, th {
+th {
+  background: linear-gradient(135deg, #eceff1, #e0e0e0);
+  font-size: 14px;
+  font-weight: 700;
   padding: 10px;
-  border-bottom: 1px solid #ddd;
+  color: #263238;
+}
+
+td {
+  padding: 12px;
+  font-size: 15px;
+  border-bottom: 1px solid #e0e0e0;
   text-align: center;
 }
 
-.nombreJugador {
-  font-weight: bold;
-  font-size: 18px;
+tr:last-child td {
+  border-bottom: none;
 }
 
+/* ================= TABLA DE JUEGO ================= */
+
+#tablaGolpes td {
+  background: #fafafa;
+  border-radius: 14px;
+}
+
+#tablaGolpes th {
+  font-size: 18px;
+  background: #f5f5f5;
+}
+
+/* ================= BOTONES +/- ================= */
+
 #tablaGolpes button {
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  background: #1565c0;
-  font-size: 20px;
+  font-size: 22px;
+  font-weight: bold;
+  margin: 4px;
+  background: linear-gradient(135deg, #1565c0, #0d47a1);
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+#tablaGolpes button:hover {
+  background: linear-gradient(135deg, #1976d2, #0d47a1);
+}
+
+/* ================= RESÚMENES ================= */
+
+#resultadoFinal table,
+#tablaResumen9 table {
+  margin-top: 12px;
+}
+
+#resultadoFinal h4 {
+  margin: 12px 0 6px;
+  font-size: 16px;
+  color: #37474f;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 480px) {
+  #setup,
+  #juego,
+  #resumen9,
+  #resumen {
+    max-width: 94%;
+    padding: 18px;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
 }
 h2 {
-  color: #b70416;
-  font-size: 20px;
+  
+  margin: 20px 0 10px;
+  font-size: 28px;
+  font-weight: 800;
+  color: #d80318;
+  letter-spacing: 1px;
+  text-shadow: 0 3px 8px rgba(0, 0, 0, 0.45);
 }

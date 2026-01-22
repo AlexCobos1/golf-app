@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Registro de Golf</title>
+  <title>Golf Score App</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -28,7 +28,7 @@
 </div>
 
 <div id="juego" style="display:none">
-  <h3 id="tituloHoyo"></h3>
+  <h3>Hoyo <span id="hoyoActual">1</span></h3>
   <table id="tablaGolpes"></table>
 
   <button onclick="hoyoAnterior()">Hoyo anterior</button>
@@ -39,7 +39,7 @@
 <div id="resumen9" style="display:none">
   <h3>Resumen primeros 9 hoyos</h3>
   <div id="tablaResumen9"></div>
-  <button onclick="continuarSegundoPar()">Continuar</button>
+  <button onclick="continuarSegundoPar()">Continuar hoyo 10</button>
 </div>
 
 <div id="resumen" style="display:none">
@@ -51,3 +51,4 @@
 <script src="golf.js"></script>
 </body>
 </html>
+
