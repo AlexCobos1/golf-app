@@ -1,67 +1,53 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Golf Score App</title>
-<link rel="stylesheet" href="styles.css">
-
+  <meta charset="UTF-8">
+  <title>Registro de Golf</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
- <body>
 
-  <h1>Registro de Golf</h1>
-    <h3>Alex Cobos</h3>
+<body>
 
- <div id="setup">
-   <label>Cantidad de jugadores (1–5)</label><br>
-    <select id="numPlayers" onchange="crearInputsJugadores()">
-     <option value="1">1</option>
-     <option value="2">2</option>
-     <option value="3">3</option>
-     <option value="4">4</option>
-     <option value="5">5</option>
-    </select>
+<h1>Registro de Golf</h1>
+<h2>Alex.C</h2>
+<div id="setup">
+  <label>Cantidad de jugadores</label>
+  <select id="numPlayers" onchange="crearInputsJugadores()">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+  </select>
 
   <div id="jugadores"></div>
 
   <button onclick="iniciarJuego()">Iniciar partida</button>
-  <button onclick="verHistorial()">Historial</button>
-  <button onclick="verUltimoJuego()">Último juego</button>
-
-</div>
-
-<div id="juego" style="display:none;">
-  <h3>Hoyo <span id="hoyoActual">1</span></h3>
-  <table id="tablaGolpes"></table>
-  <button class="btn-small" onclick="hoyoAnterior()">Hoyo anterior</button>
-  <button onclick="siguienteHoyo()">Siguiente hoyo</button>
-  <button class="btn-small" onclick="anularPartida()">Anular partida</button>
-
-
-</div>
-
-<div id="resumen9" style="display:none; margin-top:20px;">
-  <h3>Resumen primeros 9 hoyos</h3>
-  <div id="tablaResumen9"></div>
-  <button onclick="continuarSegundoPar()">Continuar con los siguientes 9 hoyos</button>
-</div>
-
-
-<div id="resumen" style="display:none;">
-  <h3>Resultado Final</h3>
-  <div id="resultadoFinal"></div>
-
-  <button onclick="nuevaPartida()">Inicio / Nueva partida</button>
-  <button onclick="verHistorial()">Historial</button>
+  <button onclick="verUltimoJuego()">Ver último juego</button>
+  <button onclick="verHistorial()">Ver historial</button>
   <button onclick="borrarHistorial()">Borrar historial</button>
 </div>
 
-<div id="contenedor">
-  <div id="resumen"></div>
-  <div id="infoDerecha"></div> <!-- espacio para historial o controles -->
+<div id="juego" style="display:none">
+  <h3 id="tituloHoyo"></h3>
+  <table id="tablaGolpes"></table>
+
+  <button onclick="hoyoAnterior()">Hoyo anterior</button>
+  <button onclick="siguienteHoyo()">Siguiente hoyo</button>
+  <button onclick="anularPartida()">Anular partida</button>
 </div>
 
-  <!-- Esto es fundamental para que el JS funcione -->
-<script src="golf.js"></script>
+<div id="resumen9" style="display:none">
+  <h3>Resumen primeros 9 hoyos</h3>
+  <div id="tablaResumen9"></div>
+  <button onclick="continuarSegundoPar()">Continuar</button>
+</div>
 
+<div id="resumen" style="display:none">
+  <h3>Resultado final</h3>
+  <div id="resultadoFinal"></div>
+  <button onclick="nuevaPartida()">Nueva partida</button>
+</div>
+
+<script src="golf.js"></script>
 </body>
 </html>

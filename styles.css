@@ -1,128 +1,84 @@
 body {
-
-      background-image: url('golfistas.png'); /* tu imagen */
-      background-size: 80% auto;    /* la imagen cubre toda la pantalla */
-      background-position: center; /* centrada */
-      background-repeat: no-repeat; /* no se repite */
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      min-height: 100vh;
+  background-image: url('golfistas.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  min-height: 100vh;
+  margin: 0;
 }
 
-/* Opcional: poner los divs encima del fondo con transparencia */
 #setup, #juego, #resumen9, #resumen {
-  background-color: rgba(255, 255, 255, 0.9); /* blanco semitransparente */
+  background: rgba(255,255,255,0.95);
   padding: 20px;
-  border-radius: 10px;
-  margin: 20px;
-
-  font-family: Arial, sans-serif;
-  max-width: 300px;
-  margin: auto;
-  padding: 16px;
-  background-color: #f5f5f5;
+  border-radius: 16px;
+  max-width: 360px;
+  margin: 20px auto;
+  box-shadow: 0 8px 24px rgba(0,0,0,.3);
 }
 
 h1 {
   text-align: center;
-  font-size: 33px;
- color: rgb(204, 69, 32);
-}
-h3{
-color: rgb(204, 32, 38);
+  color: #1607bc;
+  font-size: 34px;
 }
 
-button {
-  width: 100%;
-  font-size: 22px;
-  padding: 14px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 8px;
-  background-color: #2e7d32;
-  color: white;
+h3 {
+  text-align: center;
+  background: #e3f2fd;
+  padding: 10px;
+  border-radius: 10px;
 }
 
-button:active {
-  background-color: #1b5e20;
+small {
+  font-size: 14px;
+  color: #555;
 }
 
 input, select {
   width: 100%;
-  font-size: 18px;
   padding: 10px;
-  margin: 6px 0;
-  border-radius: 6px;
-  border: 1px solid #ccc;
+  font-size: 18px;
+  border-radius: 8px;
+  margin: 8px 0;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(135deg,#2e7d32,#1b5e20);
+  color: white;
+  font-size: 18px;
 }
 
 table {
   width: 100%;
-  margin-top: 12px;
-  background-color: white;
-  border-radius: 8px;
-}
-
-td {
-  padding: 10px;
-  font-size: 18px;
-}
-
-td:first-child {
-  text-align: left;
-  font-weight: bold;
-}
-
-td:last-child {
-  text-align: right;
-}
-
-#tablaGolpes button {
-  width: 48px;
-  font-size: 22px;
-  margin: 0 4px;
-}
-.btn-small {
-  width: auto;           /* tamaño automático, no ocupa todo el ancho */
-  font-size: 14px;       /* más pequeño que los botones principales */
-  padding: 6px 10px;     /* tamaño compacto */
-  background-color: #040053; /* rojo discreto */
-  color: white;
-  border-radius: 6px;
-  margin-left: 8px;      /* un poco de separación al lado */
-  float: right;          /* lo coloca a la derecha de la pantalla */
-}
-
-.btn-small:active {
-  background-color: #b71c1c; /* efecto cuando se presiona */
-}
-#resumen {
-  display: none;            /* inicialmente oculto */
-  float: left;              /* lo posiciona a la izquierda */
-  width: 40%;               /* ocupa 40% del ancho de la pantalla */
-  margin-right: 20px;       /* espacio a la derecha */
-}
-
-#resultadoFinal table {
-  width: 100%;              /* la tabla ocupa todo el div */
+  margin-top: 10px;
   border-collapse: collapse;
+}
+
+td, th {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
   text-align: center;
 }
 
-#resultadoFinal th, #resultadoFinal td {
-  border: 1px solid #333;
-  padding: 4px;
-}
-#contenedor {
-  display: flex;
+.nombreJugador {
+  font-weight: bold;
+  font-size: 18px;
 }
 
-#resumen {
-  width: 40%;
+#tablaGolpes button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #1565c0;
+  font-size: 20px;
 }
-
-#infoDerecha {
-  width: 55%;
-  margin-left: 5%;
+h2 {
+  color: #b70416;
+  font-size: 20px;
 }
