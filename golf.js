@@ -216,7 +216,7 @@ function verHistorial() {
     return;
   }
 
-  // Ocultar todas las vistas
+  // Ocultar todo
   document.getElementById("setup").style.display = "none";
   document.getElementById("juego").style.display = "none";
   document.getElementById("resumen9").style.display = "none";
@@ -224,15 +224,16 @@ function verHistorial() {
 
   let html = "";
 
-  historial.forEach((p, idx) => {
+  historial.forEach((p, index) => {
     html += `
-      <h4>Partida ${idx + 1} – ${p.fecha}</h4>
-      <table>
-        <tr>
-          <th>Jugador</th>
-          <th>Golpes</th>
-          <th>Putts</th>
-        </tr>
+      <div style="margin-bottom:20px">
+        <h4>Partida ${index + 1} – ${p.fecha}</h4>
+        <table>
+          <tr>
+            <th>Jugador</th>
+            <th>Golpes</th>
+            <th>Putts</th>
+          </tr>
     `;
 
     p.jugadores.forEach(j => {
@@ -245,7 +246,10 @@ function verHistorial() {
       `;
     });
 
-    html += "</table><br>";
+    html += `
+        </table>
+      </div>
+    `;
   });
 
   document.getElementById("resultadoFinal").innerHTML = html;
