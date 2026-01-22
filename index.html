@@ -10,6 +10,7 @@
 
 <h1>Registro de Golf</h1>
 <h2>Alex.C</h2>
+
 <div id="setup">
   <label>Cantidad de jugadores</label>
   <select id="numPlayers" onchange="crearInputsJugadores()">
@@ -46,6 +47,12 @@
   <h3>Resultado final</h3>
   <div id="resultadoFinal"></div>
   <button onclick="nuevaPartida()">Nueva partida</button>
+</div>
+
+<div id="historial" style="display:none">
+  <h3>Historial de partidas</h3>
+  <div id="contenidoHistorial"></div>
+  <button onclick="nuevaPartida()">Volver al inicio</button>
 </div>
 
 <script src="golf.js"></script>

@@ -211,29 +211,31 @@ function guardarHistorial(){
 function verHistorial() {
   const historial = JSON.parse(localStorage.getItem("historial")) || [];
 
-  if (historial.length === 0) {
+  if (!historial.length) {
     alert("Sin historial");
     return;
   }
 
-  // Ocultar todo
+  // Ocultar TODAS las vistas
   document.getElementById("setup").style.display = "none";
   document.getElementById("juego").style.display = "none";
   document.getElementById("resumen9").style.display = "none";
-  document.getElementById("resumen").style.display = "block";
+  document.getElementById("resumen").style.display = "none";
+
+  // Mostrar SOLO historial
+  document.getElementById("historial").style.display = "block";
 
   let html = "";
 
-  historial.forEach((p, index) => {
+  historial.forEach((p, i) => {
     html += `
-      <div style="margin-bottom:20px">
-        <h4>Partida ${index + 1} – ${p.fecha}</h4>
-        <table>
-          <tr>
-            <th>Jugador</th>
-            <th>Golpes</th>
-            <th>Putts</th>
-          </tr>
+      <h4>Partida ${i + 1} – ${p.fecha}</h4>
+      <table>
+        <tr>
+          <th>Jugador</th>
+          <th>Golpes</th>
+          <th>Putts</th>
+        </tr>
     `;
 
     p.jugadores.forEach(j => {
@@ -246,13 +248,10 @@ function verHistorial() {
       `;
     });
 
-    html += `
-        </table>
-      </div>
-    `;
+    html += "</table><br>";
   });
 
-  document.getElementById("resultadoFinal").innerHTML = html;
+  document.getElementById("contenidoHistorial").innerHTML = html;
 }
 
 function verUltimoJuego(){
