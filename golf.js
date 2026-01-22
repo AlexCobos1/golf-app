@@ -209,6 +209,17 @@ function guardarHistorial(){
   localStorage.setItem("historial",JSON.stringify(h));
 }
 function verHistorial() {
+
+  if (!storageDisponible()) {
+    alert(
+      "⚠️ El historial no está disponible en este navegador.\n\n" +
+      "En algunos celulares el almacenamiento está bloqueado " +
+      "(modo incógnito o privacidad).\n\n" +
+      "Usa el navegador normal o finaliza la partida para ver resultados."
+    );
+    return;
+  }
+
   const historial = JSON.parse(localStorage.getItem("historial")) || [];
 
   if (!historial.length) {
@@ -254,6 +265,7 @@ function verHistorial() {
   document.getElementById("contenidoHistorial").innerHTML = html;
 }
 
+
 function verUltimoJuego(){
   const h=JSON.parse(localStorage.getItem("historial"))||[];
   if(!h.length) return alert("Sin partidas");
@@ -274,6 +286,16 @@ function borrarHistorial() {
   }
 }
 
+function storageDisponible() {
+  try {
+    const test = "__test__";
+    localStorage.setItem(test, test);
+    localStorage.removeItem(test);
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
 
 
 /* ====== UTILS ====== */
