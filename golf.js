@@ -7,13 +7,24 @@ let fase = "setup";
 
 /* ====== SETUP ====== */
 function crearInputsJugadores() {
-  const n = document.getElementById("numPlayers").value;
+  const n = Number(document.getElementById("numPlayers").value);
   const cont = document.getElementById("jugadores");
+
   cont.innerHTML = "";
+
   for (let i = 1; i <= n; i++) {
-    cont.innerHTML += `<input placeholder="Jugador ${i}">`;
+    cont.innerHTML += `
+      <input
+        type="text"
+        id="jugador_${i}"
+        placeholder="Jugador ${i}"
+        required
+        maxlength="20"
+      >
+    `;
   }
 }
+
 crearInputsJugadores();
 
 /* ====== INICIAR ====== */
@@ -197,21 +208,49 @@ function guardarHistorial(){
   h.push({fecha:new Date().toLocaleString(),jugadores,golpes,putts,par});
   localStorage.setItem("historial",JSON.stringify(h));
 }
-function verHistorial(){
-  const h=JSON.parse(localStorage.getItem("historial"))||[];
-  if(!h.length) return alert("Sin historial");
-  let r="";
-  h.forEach(p=>{
-    r+=`<h4>${p.fecha}</h4><table>`;
-    p.jugadores.forEach(j=>{
-      r+=`<tr><td>${j}</td><td>${sum(p.golpes[j],0,18)}</td><td>${sum(p.putts[j],0,18)}</td></tr>`;
+function verHistorial() {
+  const historial = JSON.parse(localStorage.getItem("historial")) || [];
+
+  if (historial.length === 0) {
+    alert("Sin historial");
+    return;
+  }
+
+  // Ocultar todas las vistas
+  document.getElementById("setup").style.display = "none";
+  document.getElementById("juego").style.display = "none";
+  document.getElementById("resumen9").style.display = "none";
+  document.getElementById("resumen").style.display = "block";
+
+  let html = "";
+
+  historial.forEach((p, idx) => {
+    html += `
+      <h4>Partida ${idx + 1} – ${p.fecha}</h4>
+      <table>
+        <tr>
+          <th>Jugador</th>
+          <th>Golpes</th>
+          <th>Putts</th>
+        </tr>
+    `;
+
+    p.jugadores.forEach(j => {
+      html += `
+        <tr>
+          <td>${j}</td>
+          <td>${sum(p.golpes[j], 0, 18)}</td>
+          <td>${sum(p.putts[j], 0, 18)}</td>
+        </tr>
+      `;
     });
-    r+="</table>";
+
+    html += "</table><br>";
   });
-  document.getElementById("setup").style.display="none";
-  document.getElementById("resumen").style.display="block";
-  document.getElementById("resultadoFinal").innerHTML=r;
+
+  document.getElementById("resultadoFinal").innerHTML = html;
 }
+
 function verUltimoJuego(){
   const h=JSON.parse(localStorage.getItem("historial"))||[];
   if(!h.length) return alert("Sin partidas");
@@ -225,11 +264,13 @@ function verUltimoJuego(){
   document.getElementById("resumen").style.display="block";
   document.getElementById("resultadoFinal").innerHTML=r;
 }
-function borrarHistorial(){
-  if(confirm("¿Borrar historial?")){
-    localStorage.clear(); location.reload();
+function borrarHistorial() {
+  if (confirm("¿Borrar todo el historial?")) {
+    localStorage.removeItem("historial");
+    alert("Historial eliminado");
   }
 }
+
 
 
 /* ====== UTILS ====== */
