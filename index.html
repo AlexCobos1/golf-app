@@ -5,6 +5,7 @@
   <title>Golf Score App</title>
   <link rel="stylesheet" href="styles.css">
 </head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <body>
 
@@ -29,7 +30,11 @@
 </div>
 
 <div id="juego" style="display:none">
-  <h3>Hoyo <span id="hoyoActual">1</span></h3>
+  <h3>
+  Hoyo <span id="hoyoActual">1</span>
+  <span id="parActual">(Par 4)</span>
+</h3>
+
   <table id="tablaGolpes"></table>
 
   <button onclick="hoyoAnterior()">Hoyo anterior</button>

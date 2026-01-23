@@ -71,6 +71,7 @@ function iniciarJuego() {
 /* ====== TABLA ====== */
 function renderTabla() {
   document.getElementById("hoyoActual").textContent = hoyo;
+  document.getElementById("parActual").textContent = `(Par ${par[hoyo - 1]})`;
   const t = document.getElementById("tablaGolpes");
   t.innerHTML = "";
 
@@ -267,18 +268,38 @@ function verHistorial() {
 
 
 function verUltimoJuego(){
-  const h=JSON.parse(localStorage.getItem("historial"))||[];
-  if(!h.length) return alert("Sin partidas");
-  const p=h[h.length-1];
-  let r=`<h4>${p.fecha}</h4><table>`;
-  p.jugadores.forEach(j=>{
-    r+=`<tr><td>${j}</td><td>${sum(p.golpes[j],0,18)}</td><td>${sum(p.putts[j],0,18)}</td></tr>`;
+  const h = JSON.parse(localStorage.getItem("historial")) || [];
+  if (!h.length) return alert("Sin partidas");
+
+  const p = h[h.length - 1];
+
+  let r = `
+    <h4>${p.fecha}</h4>
+    <table>
+      <tr>
+        <th>Jugador</th>
+        <th>Golpes</th>
+        <th>Putts</th>
+      </tr>
+  `;
+
+  p.jugadores.forEach(j => {
+    r += `
+      <tr>
+        <td>${j}</td>
+        <td>${sum(p.golpes[j], 0, 18)}</td>
+        <td>${sum(p.putts[j], 0, 18)}</td>
+      </tr>
+    `;
   });
-  r+="</table>";
-  document.getElementById("setup").style.display="none";
-  document.getElementById("resumen").style.display="block";
-  document.getElementById("resultadoFinal").innerHTML=r;
+
+  r += "</table>";
+
+  document.getElementById("setup").style.display = "none";
+  document.getElementById("resumen").style.display = "block";
+  document.getElementById("resultadoFinal").innerHTML = r;
 }
+
 function borrarHistorial() {
   if (confirm("¿Borrar todo el historial?")) {
     localStorage.removeItem("historial");

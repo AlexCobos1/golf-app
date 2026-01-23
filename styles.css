@@ -13,6 +13,7 @@ body {
   background-repeat: no-repeat;
   min-height: 100vh;
   color: #1e1e1e;
+  touch-action: manipulation;
 }
 
 /* Oscurecer fondo para lectura */
@@ -29,7 +30,8 @@ body::before {
 #setup,
 #juego,
 #resumen9,
-#resumen {
+#resumen,
+#historial {
   background: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0.96),
@@ -50,9 +52,18 @@ body::before {
 h1 {
   text-align: center;
   margin: 20px 0 10px;
-  font-size: 34px;
+  font-size: 40px;
   font-weight: 800;
   color: #ff9800;
+  letter-spacing: 1px;
+  text-shadow: 0 3px 8px rgba(0, 0, 0, 0.45);
+}
+
+h2 {
+  margin: 20px 0 10px;
+  font-size: 28px;
+  font-weight: 800;
+  color: #d80318;
   letter-spacing: 1px;
   text-shadow: 0 3px 8px rgba(0, 0, 0, 0.45);
 }
@@ -117,9 +128,6 @@ button {
 
 button:hover {
   transform: translateY(-1px);
-  box-shadow:
-    0 10px 20px rgba(0, 0, 0, 0.45),
-    inset 0 1px 0 rgba(255, 255, 255, 0.25);
 }
 
 button:active {
@@ -179,13 +187,6 @@ tr:last-child td {
   font-weight: bold;
   margin: 4px;
   background: linear-gradient(135deg, #1565c0, #0d47a1);
-  box-shadow:
-    0 4px 8px rgba(0, 0, 0, 0.35),
-    inset 0 1px 0 rgba(255, 255, 255, 0.25);
-}
-
-#tablaGolpes button:hover {
-  background: linear-gradient(135deg, #1976d2, #0d47a1);
 }
 
 /* ================= RESÚMENES ================= */
@@ -201,27 +202,88 @@ tr:last-child td {
   color: #37474f;
 }
 
-/* ================= RESPONSIVE ================= */
+/* ================= MOBILE OPTIMIZATION ================= */
 
 @media (max-width: 480px) {
+
+  body {
+    font-size: 18px;
+  }
+
+  h1 {
+    font-size: 36px;
+  }
+
+  h2 {
+    font-size: 30px;
+  }
+
+  h3 {
+    font-size: 22px;
+  }
+
   #setup,
   #juego,
   #resumen9,
   #resumen {
-    max-width: 94%;
+    max-width: 96%;
+    padding: 24px;
+  }
+
+  input,
+  select {
+    font-size: 18px;
+    padding: 14px;
+  }
+
+  button {
+    font-size: 18px;
+    padding: 16px;
+  }
+
+  table {
+    font-size: 17px;
+  }
+
+  #tablaGolpes button {
+    width: 52px;
+    height: 52px;
+    font-size: 26px;
+  }
+
+  /* ===== HISTORIAL ESPECIAL ===== */
+
+  #historial {
+    max-width: 360px;
     padding: 18px;
   }
 
-  h1 {
-    font-size: 28px;
+  #historial table {
+    width: 92%;
+    margin: 10px auto;
+    font-size: 14px;
+  }
+
+  #historial th {
+    padding: 8px;
+    font-size: 13px;
+  }
+
+  #historial td {
+    padding: 6px;
+    font-size: 14px;
+  }
+
+  #historial h4 {
+    width: 92%;
+    margin: 14px auto 6px;
+    font-size: 15px;
+    text-align: center;
   }
 }
-h2 {
-  
-  margin: 20px 0 10px;
-  font-size: 28px;
-  font-weight: 800;
-  color: #d80318;
-  letter-spacing: 1px;
-  text-shadow: 0 3px 8px rgba(0, 0, 0, 0.45);
+#parActual {
+  font-size: 14px;
+  font-weight: 600;
+  color: #455a64;
+  margin-left: 6px;
 }
