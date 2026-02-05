@@ -6,132 +6,123 @@
 
 body {
   margin: 0;
-  font-family: "Segoe UI", Roboto, Arial, sans-serif;
-  background-image: url("golfistas.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
   min-height: 100vh;
-  color: #1e1e1e;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  background:
+    linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)),
+    url("fondo-golf.png") center / cover no-repeat fixed;
+  color: #e6f1ff;
   touch-action: manipulation;
-}
-
-/* Oscurecer fondo para lectura */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.35);
-  z-index: -1;
 }
 
 /* ================= CONTENEDORES ================= */
 
 #setup,
 #juego,
-#resumen9,
 #resumen,
+#resumen9,
 #historial {
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.96),
-    rgba(245, 247, 250, 0.95)
-  );
+  background: rgba(15, 32, 39, 0.75);
+  backdrop-filter: blur(10px);
   margin: 20px auto;
-  padding: 22px;
+  padding: 20px;
   max-width: 380px;
   border-radius: 18px;
   box-shadow:
-    0 12px 30px rgba(0, 0, 0, 0.35),
-    inset 0 1px 0 rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(6px);
+    0 0 25px rgba(0, 198, 255, 0.2),
+    inset 0 0 0 1px rgba(255,255,255,0.08);
 }
 
 /* ================= TÍTULOS ================= */
 
 h1 {
   text-align: center;
-  margin: 20px 0 10px;
-  font-size: 40px;
+  margin: 16px 0;
+  font-size: 38px;
   font-weight: 800;
-  color: #ff9800;
-  letter-spacing: 1px;
-  text-shadow: 0 3px 8px rgba(0, 0, 0, 0.45);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #00c6ff;
+  text-shadow: 0 0 12px rgba(0,198,255,0.7);
 }
 
 h2 {
-  margin: 20px 0 10px;
-  font-size: 28px;
-  font-weight: 800;
-  color: #d80318;
-  letter-spacing: 1px;
-  text-shadow: 0 3px 8px rgba(0, 0, 0, 0.45);
+  margin: 18px 0 10px;
+  font-size: 26px;
+  font-weight: 700;
+  color: #00e5ff;
 }
 
 h3 {
   text-align: center;
-  margin: 0 0 16px;
-  font-size: 20px;
-  color: #0d47a1;
+  margin-bottom: 16px;
+  font-size: 18px;
+  letter-spacing: 1px;
+  color: #ffffff;
+  background: linear-gradient(135deg, #00c6ff, #00ffbb);
   padding: 10px;
   border-radius: 12px;
-  background: linear-gradient(135deg, #e3f2fd, #bbdefb);
-  box-shadow: inset 0 0 0 1px rgba(13, 71, 161, 0.15);
 }
 
 /* ================= FORMULARIOS ================= */
 
 label {
+  font-size: 13px;
   font-weight: 600;
-  font-size: 14px;
-  color: #333;
+  color: #b0bec5;
 }
 
 input,
 select {
   width: 100%;
   padding: 12px;
-  font-size: 16px;
-  border-radius: 10px;
-  border: 1px solid #cfd8dc;
-  background: #ffffff;
   margin: 8px 0;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(0,0,0,0.6);
+  color: #ffffff;
+  font-size: 15px;
   outline: none;
-  transition: border 0.15s, box-shadow 0.15s;
 }
 
 input:focus,
 select:focus {
-  border-color: #1976d2;
-  box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.15);
+  border-color: #00c6ff;
+  box-shadow: 0 0 10px rgba(0,198,255,0.4);
 }
 
-/* ================= BOTONES PRINCIPALES ================= */
+/* ================= BOTONES ================= */
 
 button {
   width: 100%;
   padding: 14px;
   margin: 8px 0;
-  border-radius: 12px;
+  border-radius: 20px;
   border: none;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 700;
-  letter-spacing: 0.4px;
   color: #ffffff;
-  background: linear-gradient(135deg, #2e7d32, #1b5e20);
-  box-shadow:
-    0 6px 14px rgba(0, 0, 0, 0.35),
-    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  background: linear-gradient(135deg, #00c6ff, #0072ff);
   cursor: pointer;
-  transition: transform 0.12s ease, box-shadow 0.12s ease;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 button:hover {
-  transform: translateY(-1px);
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(0,198,255,0.7);
 }
 
 button:active {
-  transform: scale(0.98);
+  transform: scale(0.95);
+}
+button[onclick="borrarCampo()"] {
+  background: linear-gradient(135deg, #ff3b3b, #b30000);
+  color: #fff;
+  font-weight: bold;
+}
+
+button[onclick="borrarCampo()"]:hover {
+  box-shadow: 0 0 12px rgba(255, 0, 0, 0.7);
 }
 
 /* ================= TABLAS ================= */
@@ -139,151 +130,118 @@ button:active {
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 14px;
-  background: #ffffff;
+  margin-top: 12px;
+  background: rgba(0,0,0,0.45);
   border-radius: 14px;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+th,
+td {
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 8px;
+  text-align: center;
+  font-size: 14px;
 }
 
 th {
-  background: linear-gradient(135deg, #eceff1, #e0e0e0);
-  font-size: 14px;
-  font-weight: 700;
-  padding: 10px;
-  color: #263238;
+  background: linear-gradient(135deg, #00c6ff, #0072ff);
+  color: #ffffff;
+  font-weight: 600;
 }
 
-td {
-  padding: 12px;
-  font-size: 15px;
-  border-bottom: 1px solid #e0e0e0;
-  text-align: center;
-}
-
-tr:last-child td {
-  border-bottom: none;
+tr:nth-child(even) td {
+  background: rgba(255,255,255,0.04);
 }
 
 /* ================= TABLA DE JUEGO ================= */
 
-#tablaGolpes td {
-  background: #fafafa;
-  border-radius: 14px;
-}
-
 #tablaGolpes th {
-  font-size: 18px;
-  background: #f5f5f5;
+  font-size: 16px;
 }
 
-/* ================= BOTONES +/- ================= */
+#tablaGolpes td {
+  font-weight: 700;
+}
 
+/* Botones +/- */
 #tablaGolpes button {
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  font-size: 22px;
+  font-size: 20px;
+  padding: 0;
+}
+
+/* ================= ESTADOS DE PAR ================= */
+
+.bajo-par {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid #00ff7f;
+  color: #00ff7f;
   font-weight: bold;
-  margin: 4px;
-  background: linear-gradient(135deg, #1565c0, #0d47a1);
+  box-shadow: 0 0 8px rgba(0,255,127,0.8);
 }
 
-/* ================= RESÚMENES ================= */
-
-#resultadoFinal table,
-#tablaResumen9 table {
-  margin-top: 12px;
+.sobre-par {
+  color: #ff6b6b;
+  font-weight: bold;
 }
 
-#resultadoFinal h4 {
-  margin: 12px 0 6px;
-  font-size: 16px;
-  color: #37474f;
+.al-par {
+  color: #ffffff;
+  opacity: 0.85;
 }
 
-/* ================= MOBILE OPTIMIZATION ================= */
+/* ================= GOLPES / PUTTS ================= */
+
+.golpe-actual {
+  color: #ffffff;
+  font-weight: 900;
+  font-size: 1.1rem;
+}
+
+#tablaGolpes td:hover {
+  color: #00e676;
+  transition: color 0.2s ease;
+}
+
+/* ================= MOBILE ================= */
 
 @media (max-width: 480px) {
 
-  body {
-    font-size: 18px;
-  }
-
-  h1 {
-    font-size: 36px;
-  }
-
-  h2 {
-    font-size: 30px;
-  }
-
-  h3 {
-    font-size: 22px;
-  }
+  h1 { font-size: 34px; }
+  h2 { font-size: 24px; }
+  h3 { font-size: 20px; }
 
   #setup,
   #juego,
+  #resumen,
   #resumen9,
-  #resumen {
-    max-width: 96%;
-    padding: 24px;
+  #historial {
+    max-width: 95%;
+    padding: 22px;
   }
 
   input,
   select {
-    font-size: 18px;
+    font-size: 17px;
     padding: 14px;
   }
 
   button {
-    font-size: 18px;
-    padding: 16px;
-  }
-
-  table {
     font-size: 17px;
+    padding: 16px;
   }
 
   #tablaGolpes button {
     width: 52px;
     height: 52px;
-    font-size: 26px;
+    font-size: 24px;
   }
-
-  /* ===== HISTORIAL ESPECIAL ===== */
-
-  #historial {
-    max-width: 360px;
-    padding: 18px;
-  }
-
-  #historial table {
-    width: 92%;
-    margin: 10px auto;
-    font-size: 14px;
-  }
-
-  #historial th {
-    padding: 8px;
-    font-size: 13px;
-  }
-
-  #historial td {
-    padding: 6px;
-    font-size: 14px;
-  }
-
-  #historial h4 {
-    width: 92%;
-    margin: 14px auto 6px;
-    font-size: 15px;
-    text-align: center;
-  }
-}
-#parActual {
-  font-size: 14px;
-  font-weight: 600;
-  color: #455a64;
-  margin-left: 6px;
 }

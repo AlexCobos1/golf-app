@@ -3,25 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <title>Golf Score App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles.css">
 </head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <body>
 
 <h1>Registro de Golf</h1>
 <h2>Alex.C</h2>
 
 <div id="setup">
+  <h3>Campo de golf</h3>
+  <select id="campoSelect" onchange="seleccionarCampo()"></select>
+  <button onclick="nuevoCampo()">Crear campo</button>
+  <button onclick="borrarCampo()">Borrar campo</button>
+
+
   <label>Cantidad de jugadores</label>
   <select id="numPlayers" onchange="crearInputsJugadores()">
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
+    <option>1</option><option>2</option><option>3</option><option>4</option>
   </select>
 
   <div id="jugadores"></div>
+
+<label>Comenzar en</label>
+<select id="inicioVuelta">
+  <option value="1">Primera vuelta (Hoyo 1)</option>
+  <option value="10">Segunda vuelta (Hoyo 10)</option>
+</select>
 
   <button onclick="iniciarJuego()">Iniciar partida</button>
   <button onclick="verUltimoJuego()">Ver último juego</button>
@@ -30,13 +38,8 @@
 </div>
 
 <div id="juego" style="display:none">
-  <h3>
-  Hoyo <span id="hoyoActual">1</span>
-  <span id="parActual">(Par 4)</span>
-</h3>
-
+  <h3>Hoyo <span id="hoyoActual"></span> <span id="parActual"></span></h3>
   <table id="tablaGolpes"></table>
-
   <button onclick="hoyoAnterior()">Hoyo anterior</button>
   <button onclick="siguienteHoyo()">Siguiente hoyo</button>
   <button onclick="anularPartida()">Anular partida</button>
@@ -45,22 +48,23 @@
 <div id="resumen9" style="display:none">
   <h3>Resumen primeros 9 hoyos</h3>
   <div id="tablaResumen9"></div>
-  <button onclick="continuarSegundoPar()">Continuar hoyo 10</button>
+  <button onclick="continuarSegundoPar()">Continuar Siguiente Vuelta</button>
 </div>
 
 <div id="resumen" style="display:none">
   <h3>Resultado final</h3>
   <div id="resultadoFinal"></div>
-  <button onclick="nuevaPartida()">Nueva partida</button>
+  <button onclick="volverInicio()">Volver al inicio</button>
+
 </div>
 
 <div id="historial" style="display:none">
-  <h3>Historial de partidas</h3>
+  <h3>Historial</h3>
   <div id="contenidoHistorial"></div>
-  <button onclick="nuevaPartida()">Volver al inicio</button>
+<button onclick="volverInicioDesdeHistorial()">Volver</button>
+
 </div>
 
 <script src="golf.js"></script>
 </body>
 </html>
-
