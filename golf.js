@@ -394,11 +394,16 @@ function verHistorial() {
     const par18 = par9_1 + par9_2;
 
     html += `
-  <h4>
-    Partida ${i + 1} – ${p.fecha}
-    <button onclick="borrarPartidaHistorial(${i})">🗑️</button>
-  </h4>
+  <div class="historial-item">
+    <div class="historial-titulo">
+      Partida ${i + 1} – ${p.fecha}
+    </div>
+    <button class="btn-borrar-historial" data-index="${i}">
+      🗑️ Borrar
+    </button>
+  </div>
 `;
+
     html += "<table><tr><th>Jugador</th>";
 
     for (let h = 1; h <= 18; h++) {
@@ -443,6 +448,11 @@ function verHistorial() {
   });
 
   document.getElementById("contenidoHistorial").innerHTML = html;
+  document.querySelectorAll(".btn-borrar-historial").forEach(btn => {
+  btn.addEventListener("touchstart", borrarPartidaDesdeHistorial);
+  btn.addEventListener("click", borrarPartidaDesdeHistorial);
+});
+
 }
 
 function salirHistorial() {
@@ -603,7 +613,11 @@ function pintarGolpe(golpes, parHoyo) {
   }
   return `<span class="al-par">${golpes}</span>`;
 }
-function borrarPartidaHistorial(index) {
+function borrarPartidaDesdeHistorial(e) {
+  e.preventDefault();
+  e.stopPropagation();
+
+  const index = Number(this.dataset.index);
   const historial = JSON.parse(localStorage.getItem("historial")) || [];
 
   if (!historial[index]) {
@@ -616,6 +630,6 @@ function borrarPartidaHistorial(index) {
   historial.splice(index, 1);
   localStorage.setItem("historial", JSON.stringify(historial));
 
-  verHistorial(); // refresca la pantalla
+  verHistorial(); // refresca vista
 }
 

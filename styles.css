@@ -245,3 +245,15 @@ tr:nth-child(even) td {
     font-size: 24px;
   }
 }
+.historial-item {
+  border: 1px solid #ccc;
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+}
+
+.btn-borrar-historial {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+}
