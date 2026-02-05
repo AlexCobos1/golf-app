@@ -393,7 +393,12 @@ function verHistorial() {
     const par9_2 = sum(p.par, 9, 18);
     const par18 = par9_1 + par9_2;
 
-    html += `<h4>Partida ${i + 1} – ${p.fecha}</h4>`;
+    html += `
+  <h4>
+    Partida ${i + 1} – ${p.fecha}
+    <button onclick="borrarPartidaHistorial(${i})">🗑️</button>
+  </h4>
+`;
     html += "<table><tr><th>Jugador</th>";
 
     for (let h = 1; h <= 18; h++) {
@@ -560,7 +565,7 @@ function anularPartida() {
 
   fase = "setup";
   guardarVista("setup");
-  
+
   localStorage.removeItem("vistaActual");
 
   ocultarTodo();
@@ -597,5 +602,20 @@ function pintarGolpe(golpes, parHoyo) {
     return `<span class="sobre-par">${golpes}</span>`;
   }
   return `<span class="al-par">${golpes}</span>`;
+}
+function borrarPartidaHistorial(index) {
+  const historial = JSON.parse(localStorage.getItem("historial")) || [];
+
+  if (!historial[index]) {
+    alert("La partida no existe");
+    return;
+  }
+
+  if (!confirm("¿Seguro que deseas borrar esta partida?")) return;
+
+  historial.splice(index, 1);
+  localStorage.setItem("historial", JSON.stringify(historial));
+
+  verHistorial(); // refresca la pantalla
 }
 
