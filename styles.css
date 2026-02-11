@@ -257,3 +257,8 @@ tr:nth-child(even) td {
   padding: 10px;
   font-size: 16px;
 }
+td small {
+  display: block;
+  font-size: 0.75em;
+  color: #666;
+}
